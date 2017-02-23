@@ -10,7 +10,7 @@ If you have any questions, or would be interested in seeing the full research co
 The syntax for use is very straight forward.
 In the `code` directory, `BRNN.py` is the primary file.
 Run,
-	`python BRNN.py <type> <batch_number>
+	`python BRNN.py <type> <batch_number>`
 
 Where `<type>` is one of:
 	`--full`		: which results in a full precision network.
