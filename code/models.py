@@ -34,7 +34,7 @@ def feedforward_network(b_type, graph, n_input, n_out, binarize_input = False):
 
 		# Define training metrics
 		output = tf.identity(o, name="output")
-		loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(output, labels))
+		loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits = output, labels = labels))
 		acc_value = accuracy(labels, output)	
 
 		# Define optimizer and gradient update

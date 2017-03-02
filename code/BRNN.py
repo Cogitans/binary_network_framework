@@ -38,7 +38,7 @@ def train(sess, graph, training_generator, validation_generator, backprop, loss,
 		# For each batch:
 		for batch_iter in range(num_batch):
 
-			batch = training_generator.next() # get new data
+			batch = next(training_generator) # get new data
 			feed_dict = {"x:0": batch[0], "y:0": batch[1]}
 			
 			# Discretize all weights
@@ -50,7 +50,7 @@ def train(sess, graph, training_generator, validation_generator, backprop, loss,
 
 			# Every once in a while test on the validation set.
 			if batch_iter % how_often == 0:
-				test_batch = validation_generator.next()
+				test_batch = next(validation_generator)
 				acc_v, loss_v = sess.run([acc_value, loss], {"x:0": test_batch[0], "y:0": test_batch[1]})
 				losses.append(loss_v)
 				accuracies.append(acc_v)
@@ -103,8 +103,8 @@ def train_feedforward(b_type):
 	# along with their shapes.
 	generator = mnist_generator(128)
 	validation_generator = mnist_test_generator()
-	_, n_input = generator.next()[0].shape
-	_, n_out = generator.next()[1].shape
+	_, n_input = next(generator)[0].shape
+	_, n_out = next(generator)[1].shape
 
 	# Create the network
 	network = feedforward_network(b_type, graph, n_input, n_out, binarize)
