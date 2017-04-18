@@ -108,6 +108,7 @@ def save_results(losses, accuracies, name):
 # Helper method for saving weights
 def save_weights(weights, name):
 	with open(SAVE_PATH + name + ".weights", "wb") as f:
+		pickle.dump(weights, f)
 
 
 #########################################
@@ -121,7 +122,7 @@ def train_simple(b_type, bt = "Identity", initialization = he_normal()):
 	weights, losses, accuracies = train(sess, graph, mnist_generator(128), mnist_test_generator(), *network)
 
 # Helper method for training a deeper feedforward network with specifiable weight initialization and backpropagation.
-def train_deep(b_type, bt = "Identity", initialization = he_normal(), depth = 5):
+def train_deep(b_type, bt = "Identity", initialization = he_normal(), depth = 15):
 	sess, graph = keras_init()	
 	network = deep_network(b_type, graph, binarize_input = False, backprop_type = bt, initialization = initialization, num_layers = depth)
 	weights, losses, accuracies = train(sess, graph, mnist_generator(128), mnist_test_generator(), *network)

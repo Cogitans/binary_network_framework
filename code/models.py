@@ -60,7 +60,7 @@ def simple_network(b_type, graph, binarize_input = False, backprop_type = "Ident
 
 
 
-# A deeper network which automatically uses the Chernoff backprop.
+# A deeper network.
 # The arguments are as follows:
 # 	b_type			: Either "full", "BinaryNet" or "BinaryConnect", specifying the discretization.
 #	graph			: A Tensorflow graph, not really relevant in this version of the code
@@ -68,7 +68,7 @@ def simple_network(b_type, graph, binarize_input = False, backprop_type = "Ident
 # 	backprop_type 	: One of "Identity", "Chernoff", "STE"; describing how to backpropagate through tf.sign
 #	initialization 	: A function to initialize your weight matrices with.
 #   num_layers 		: How many hidden layers after the initial layer.
-def deep_network(b_type, graph, binarize_input = False, backprop_type = "Chernoff", initialization = he_normal(), num_layers = 10):
+def deep_network(b_type, graph, backprop_type, binarize_input = False, initialization = he_normal(), num_layers = 10):
 	with graph.as_default():
 		assert b_type in ["full", "BinaryNet", "BinaryConnect"]
 
